@@ -26,7 +26,7 @@
                     <td><input type="text" name="password" value="{{$password}}"></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="submit" value="submit"></td>
+                    <td><input type="submit" name="submit" value="Update"></td>
                 </tr>
         </table>
     </form>

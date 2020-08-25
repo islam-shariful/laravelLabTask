@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
+    // Index(Show in home)
     public function index() {
         // $data = ['id'=>'171','name'=>'sharif'];
         // return view('home.index', $data);
@@ -29,7 +31,7 @@ class HomeController extends Controller
         //     ['3','islam','373']
         // ];
         $users = $this->getStudentList();
-        
+ 
         return view('home.index')->with('users',$users);
     }
     //update
@@ -126,10 +128,15 @@ class HomeController extends Controller
         echo $id;
     }
     function getStudentList(){
-        return [
+        $users = [
                     ['id'=>'1','name'=>'sharif','email'=>'sharif@gmail.com','password'=>'070'],
                     ['id'=>'2','name'=>'hossain','email'=>'hossain@gmail.com','password'=>'272'],
                     ['id'=>'3','name'=>'isalm','email'=>'isalm@gmail.com','password'=>'373'],
                 ];
+
+        for($i=0; $i<count($users); $i++){
+            $users[$i]['password'] = Hash::make($users[$i]['password']);
+        }
+        return $users;
     }
 }
