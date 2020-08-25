@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -10,10 +11,11 @@ class LoginController extends Controller
         return view('login.login');
     }
     function validation(Request $request){
+        $username = $password = 'admin';
+        $hashedPassword = Hash::make($password);
         //echo $request->input('username');
-        //echo $request->username;
-        //echo $request->password;
-        if($request->username == $request->password){
+        
+        if( $request->username == $username && Hash::check($request->password, $hashedPassword) ){
             return redirect('/home');
         }
         else{

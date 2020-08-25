@@ -31,7 +31,7 @@ class HomeController extends Controller
         //     ['3','islam','373']
         // ];
         $users = $this->getStudentList();
- 
+
         return view('home.index')->with('users',$users);
     }
     //update

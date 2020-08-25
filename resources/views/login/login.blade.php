@@ -6,13 +6,18 @@
     <title>Login</title>
 </head>
 <body>
-    <form method="post">
-        @csrf
-        <table>
-            User Name: <input type="text" name="username"/></br>
-            Password: <input type="password" name="password"/>    
-            <input type="submit" name="submit" value="submit"/>
-        </table>
-    </form>
+    <div>
+        <form method="post">
+            @csrf
+            <table>
+                User Name: <input type="text" name="username"/></br>
+                Password: <input type="password" name="password"/>    
+                <input type="submit" name="submit" value="submit"/>
+            </table>
+        </form>
+    </div>
+    <div>
+        Username: 'admin' | Password: 'admin'
+    </div>
 </body>
 </html>
