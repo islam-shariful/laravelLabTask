@@ -7,6 +7,7 @@
 </head>
 <body>
     <form method="post">
+        @csrf
         <table>
             User Name: <input type="text" name="username"/></br>
             Password: <input type="password" name="password"/>    

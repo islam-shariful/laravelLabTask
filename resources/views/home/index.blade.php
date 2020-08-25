@@ -7,6 +7,11 @@
 </head>
 <body>
     <h1>This is LARAVEL home<h1>
+
+    <form>
+        <input name='search' placeholder="Search By Id"/>
+        <input type='submit' id='submit' name='submit' value='submit'/>
+    </form>
     
     <table  border='1px'>
         <tr>
@@ -19,6 +24,7 @@
 
     @for($i=0; $i !=count($users);$i++)
         <tr>
+            @if($users[$i]['id'] != null)
             <td>{{$users[$i]['id']}}</td>
             <td>{{$users[$i]['name']}}</td>
             <td>{{$users[$i]['email']}}</td>
@@ -28,6 +34,7 @@
                 <a href="/home/delete/{{$users[$i]['id']}}">Delete</a> |
                 <a href="/home/details/{{$users[$i]['id']}}">Details</a> |
             </td>
+            @endif
         </tr>
     @endfor
     </table>

@@ -107,12 +107,13 @@ class HomeController extends Controller
 
         $users = $this->getStudentList();
         for($i=0; $i<count($users); $i++){
-            if($id != $users[$i]['id']){
+            if($id == $users[$i]['id']){
                 // //array_replace($users[$i],$newUser);
-                $users[$i]['id'] = $users[$i]['id'];
-                $users[$i]['name'] = "";
-                $users[$i]['email'] = "";
-                $users[$i]['password'] = "";
+                
+                $users[$i]['id'] = null;
+                $users[$i]['name'] = null;
+                $users[$i]['email'] = null;
+                $users[$i]['password'] = null;
 
                 //echo $users[$i]['name'];
                 //$users = array_splice($users, $, 2);
