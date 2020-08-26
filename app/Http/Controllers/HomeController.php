@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 class HomeController extends Controller
 {
     // Index(Show in home)
-    public function index() {
+    public function index(Request $request) {
         // $data = ['id'=>'171','name'=>'sharif'];
         // return view('home.index', $data);
 
@@ -30,9 +30,14 @@ class HomeController extends Controller
         //     ['2','hossain','272'],
         //     ['3','islam','373']
         // ];
-        $users = $this->getStudentList();
-
-        return view('home.index')->with('users',$users);
+        
+        if($request->session()->has('username')){
+            $users = $this->getStudentList();
+            return view('home.index')->with('users',$users);
+        }else {
+            $request->session()->flash('msg','InValid request');
+            return redirect('/login');
+        }
     }
     //update
     function update($id, Request $request){

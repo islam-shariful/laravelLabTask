@@ -19,5 +19,6 @@
     <div>
         Username: 'admin' | Password: 'admin'
     </div>
+    {{session('msg')}}
 </body>
 </html>

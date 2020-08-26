@@ -45,6 +45,9 @@
         @endfor
         </table>
     </div>
+    <div>
+        <a href="/logout">Logout</a>
+    </div>
 
     <!-- JS Script -->
 

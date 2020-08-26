@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@validation');
 
+Route::get('/logout', 'LogoutController@index');
 
 Route::get('/home', 'HomeController@index');
 Route::get('/home/edit/{id}', 'HomeController@edit');

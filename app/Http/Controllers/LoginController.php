@@ -16,6 +16,7 @@ class LoginController extends Controller
         //echo $request->input('username');
         
         if( $request->username == $username && Hash::check($request->password, $hashedPassword) ){
+            $request->session()->put('username',$request->username);
             return redirect('/home');
         }
         else{
