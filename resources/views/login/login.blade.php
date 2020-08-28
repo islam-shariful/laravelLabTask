@@ -15,9 +15,10 @@
                 <input type="submit" name="submit" value="submit"/>
             </table>
         </form>
-    </div>
+    </div><br>
     <div>
-        Username: 'admin' | Password: 'admin'
+        Username: 'admin' | Password: 'admin' </br>
+        Username: 'user' | Password: 'user'
     </div>
     {{session('msg')}}
 </body>

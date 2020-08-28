@@ -31,13 +31,8 @@ class HomeController extends Controller
         //     ['3','islam','373']
         // ];
         
-        if($request->session()->has('username')){
-            $users = $this->getStudentList();
-            return view('home.index')->with('users',$users);
-        }else {
-            $request->session()->flash('msg','InValid request');
-            return redirect('/login');
-        }
+        $users = $this->getStudentList();
+        return view('home.index')->with('users',$users);
     }
     //update
     function update($id, Request $request){

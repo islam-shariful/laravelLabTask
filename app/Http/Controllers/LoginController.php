@@ -11,17 +11,26 @@ class LoginController extends Controller
         return view('login.login');
     }
     function validation(Request $request){
-        $username = $password = 'admin';
-        $hashedPassword = Hash::make($password);
-        //echo $request->input('username');
-        
-        if( $request->username == $username && Hash::check($request->password, $hashedPassword) ){
-            $request->session()->put('username',$request->username);
-            return redirect('/home');
+        $users = [
+            ['username'=>'admin','password'=>'admin'],
+            ['username'=>'user','password'=>'user'],
+        ];
+        for($i=0; $i<count($users); $i++){
+            $username = $password = $users[$i]['username'];
+            $hashedPassword = Hash::make($users[$i]['password']);
+            //echo $request->input('username');
+                
+            if( $request->username == $username && Hash::check($request->password, $hashedPassword) ){
+                $request->session()->put('username',$request->username);
+                // type set up in session
+                if($request->username == "admin"){
+                    $request->session()->put('type',$request->username);
+                }
+
+                return redirect('/home');
+            }
         }
-        else{
-            echo "Invalid Username or password";
-        }
+        echo "Invalid Username or password ";
 
     }
 }

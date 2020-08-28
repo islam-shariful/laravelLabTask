@@ -22,12 +22,32 @@ Route::post('/login', 'LoginController@validation');
 
 Route::get('/logout', 'LogoutController@index');
 
-Route::get('/home', 'HomeController@index');
-Route::get('/home/edit/{id}', 'HomeController@edit');
-Route::post('/home/edit/{id}', 'HomeController@update');
+// ROute::group(['middleware'=>'sess'], function(){
+//     Route::get('/home', 'HomeController@index');
+//     Route::get('/home/edit/{id}', 'HomeController@edit');
+//     Route::post('/home/edit/{id}', 'HomeController@update');
 
-Route::get('/home/delete/{id}', 'HomeController@delete');
-Route::post('/home/delete/{id}', 'HomeController@destroy');
+//     Route::get('/home/delete/{id}', 'HomeController@delete');
+//     Route::post('/home/delete/{id}', 'HomeController@destroy');
 
-Route::get('/home/details/{id}', 'HomeController@details');
+//     Route::get('/home/details/{id}', 'HomeController@details');
+// });
+
+Route::middleware(['sess'])->group(function(){
+    Route::get('/home', 'HomeController@index');
+
+    Route::middleware(['type'])->group(function(){
+
+        Route::get('/home/edit/{id}', 'HomeController@edit');
+        Route::post('/home/edit/{id}', 'HomeController@update');
+    
+        Route::get('/home/delete/{id}', 'HomeController@delete');
+        Route::post('/home/delete/{id}', 'HomeController@destroy');
+    
+        Route::get('/home/details/{id}', 'HomeController@details');
+        
+    });
+    
+});
+
 
