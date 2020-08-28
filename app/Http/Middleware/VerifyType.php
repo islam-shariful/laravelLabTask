@@ -18,7 +18,7 @@ class VerifyType
     {
         $userType = $request->session()->get('type');
         //$userType = $request->username;
-        //Question-> "Why 'request->username' is valid in middleware?Also 'echo'"
+        //Question-> "Why 'request->username' is not valid in middleware?Also 'echo'"
         if($userType == "admin"){
             return $next($request);
         }else {
