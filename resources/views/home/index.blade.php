@@ -23,23 +23,28 @@
         <table  border='1px'>
             <tr>
                 <td>ID</td>
-                <td>Name</td>
-                <td>Email</td>
+                <td>User Name</td>
                 <td>Password</td>
+                <td>Type</td>
+                <td>Full Name</td>
+                <td>Department</td>
+                <td>CGPA</td>
                 <td>Actions</td>
             </tr>
-
-        @for($i=0; $i !=count($users);$i++)
+        @for($i=0; $i !=count($data);$i++)
             <tr>
-                @if($users[$i]['id'] != null)
-                <td>{{$users[$i]['id']}}</td>
-                <td>{{$users[$i]['name']}}</td>
-                <td>{{$users[$i]['email']}}</td>
-                <td>{{$users[$i]['password']}}</td>
+                @if($data[$i]['userid'] != null)
+                <td>{{$data[$i]['userid']}}</td>
+                <td>{{$data[$i]['username']}}</td>
+                <td>{{$data[$i]['password']}}</td>
+                <td>{{$data[$i]['type']}}</td>
+                <td>{{$data[$i]['name']}}</td>
+                <td>{{$data[$i]['department']}}</td>
+                <td>{{$data[$i]['cgpa']}}</td>
                 <td>
-                    <a href="/home/edit/{{$users[$i]['id']}}">Edit</a> |
-                    <a href="/home/delete/{{$users[$i]['id']}}">Delete</a> |
-                    <a href="/home/details/{{$users[$i]['id']}}">Details</a>
+                    <a href="/home/edit/{{$data[$i]['userid']}}">Edit</a> |
+                    <a href="/home/delete/{{$data[$i]['userid']}}">Delete</a> |
+                    <a href="/home/details/{{$data[$i]['userid']}}">Details</a>
                 </td>
                 @endif
             </tr>
