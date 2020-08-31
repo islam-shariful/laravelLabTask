@@ -10,6 +10,7 @@
 <body>
     <div>
         <h1>This is LARAVEL home<h1>
+        <a href="home/createUser">Crate User</a>
     </div>
     <!-- Search -->
     <!-- <form>

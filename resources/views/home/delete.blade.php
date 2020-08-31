@@ -8,6 +8,7 @@
 <body>
     <h1>Delete Page</h1>
     <form method="post">
+    @csrf
     <input type="hidden" name="_token" value="UUC3igkQVtN6CYZbePfQZ5FLXKPAok2fPS1sCABZ">
         <table>
                 <tr>

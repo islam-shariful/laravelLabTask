@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return redirect('login');
 });
 
 Route::get('/login', 'LoginController@index');
@@ -45,6 +46,9 @@ Route::middleware(['sess'])->group(function(){
         Route::post('/home/delete/{id}', 'HomeController@destroy');
     
         Route::get('/home/details/{id}', 'HomeController@details');
+
+        Route::get('/home/createUser', 'HomeController@creation');
+        Route::post('/home/createUser', 'HomeController@create');
         
     });
     

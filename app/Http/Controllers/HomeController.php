@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -34,6 +35,26 @@ class HomeController extends Controller
         $users = $this->getStudentList();
         return view('home.index')->with('users',$users);
     }
+    //Create 'GET'
+    function creation(){
+        return view('home.createUser');
+    }
+    //Create 'POST'
+    function create(Request $request){
+        $user = new User();
+
+        $user->username = $request->username;
+        $user->password = $request->password;
+        $user->type = $request->type;
+        $user->name = $request->name;
+        $user->department = $request->department;
+        $user->cgpa = $request->cgpa;
+        
+        $user->save();
+
+        return redirect('home');
+    }
+
     //update
     function update($id, Request $request){
         $newUser = [

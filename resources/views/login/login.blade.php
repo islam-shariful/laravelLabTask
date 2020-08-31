@@ -17,8 +17,8 @@
         </form>
     </div><br>
     <div>
-        Username: 'admin' | Password: 'admin' </br>
-        Username: 'user' | Password: 'user'
+        Username: 'sharif' | Password: '123' | Type: 'Admin'</br>
+        Username: 'hossain' | Password: '123' | Type: 'user'
     </div>
     {{session('msg')}}
 </body>
