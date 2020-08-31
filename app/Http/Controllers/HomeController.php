@@ -87,52 +87,38 @@ class HomeController extends Controller
         $user->name = $request->name;
         $user->department = $request->department;
         $user->cgpa = $request->cgpa;
-        
+
         $user->save();
 
         return redirect('home');
     }
-    //delete
-    function delete($id){
-        $users = $this->getStudentList();
-        for($i=0; $i<count($users); $i++){
-            if($id == $users[$i]['id']){
+    //delete 'GET'
+    function delete($userid){
+        $user = new User();
+        $data = $user->where('userid', $userid)
+                        ->get();
+
+        for($i=0; $i<count($data); $i++){
+            if($userid == $data[$i]['userid']){
                 $user = [
-                    'id'=>$users[$i]['id'],
-                    'name'=>$users[$i]['name'],
-                    'email'=>$users[$i]['email'],
-                    'password'=>$users[$i]['password']
+                    'userid'=>$data[$i]['userid'],
+                    'username'=>$data[$i]['username'],
+                    'password'=>$data[$i]['password'],
+                    'type'=>$data[$i]['type'],
+                    'name'=>$data[$i]['name'],
+                    'department'=>$data[$i]['department'],
+                    'cgpa'=>$data[$i]['cgpa']
                 ];
-                return view('home.delete', $user);  
+                return view('home.delete', $user);
             }
         }
     }
     //Destroy
-    function destroy($id, Request $request){
-        $newUser = [
-            'id'=>$request->id,
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>$request->password
-        ];
+    function destroy($userid, Request $request){
+        $user = User::find($userid);
+        $user->delete();
 
-
-        $users = $this->getStudentList();
-        for($i=0; $i<count($users); $i++){
-            if($id == $users[$i]['id']){
-                // //array_replace($users[$i],$newUser);
-                
-                $users[$i]['id'] = null;
-                $users[$i]['name'] = null;
-                $users[$i]['email'] = null;
-                $users[$i]['password'] = null;
-
-                //echo $users[$i]['name'];
-                //$users = array_splice($users, $, 2);
-                // unset($users[$i]['id']);
-            }else{}
-        }
-        return view('home.index')->with('users',$users);
+        return redirect('home');
     }
     function details($id){
         echo $id;

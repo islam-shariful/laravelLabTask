@@ -11,24 +11,36 @@
     @csrf
     <input type="hidden" name="_token" value="UUC3igkQVtN6CYZbePfQZ5FLXKPAok2fPS1sCABZ">
         <table>
-                <tr>
-                    <td>ID</td>
-                    <td><input type="text" name="id" value="{{$id}}"></td>
+        <tr>
+                    <td>ID:</td>
+                    <td>{{$userid}}</td>
                 </tr>
                 <tr>
-                    <td>Name</td>
-                    <td><input type="text" name="name" value="{{$name}}"></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><input type="text" name="email" value="{{$email}}"></td>
+                    <td>Name:</td>
+                    <td>{{$username}}</td>
                 </tr>
                 <tr>
                     <td>Password</td>
-                    <td><input type="text" name="password" value="{{$password}}"></td>
+                    <td>{{$password}}</td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="submit" value="delete"></td>
+                    <td>Type:</td>
+                    <td>{{$type}}</td>
+                </tr>
+                <tr>
+                    <td>Full Name:</td>
+                    <td>{{$name}}</td>
+                </tr>
+                <tr>
+                    <td>Department:</td>
+                    <td>{{$department}}</td>
+                </tr>
+                <tr>
+                    <td>CGPA:</td>
+                    <td>{{$cgpa}}</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="submit" value="Confirm Delete"></td>
                 </tr>
         </table>
     </form>
