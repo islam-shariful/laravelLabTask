@@ -56,54 +56,41 @@ class HomeController extends Controller
 
         return redirect('home');
     }
+    //edit 'GET'
+    function edit($userid){
+        $user = new User();
+        $data = $user->where('userid', $userid)
+                        ->get();
 
-    //update
-    function update($id, Request $request){
-        $newUser = [
-            'id'=>$request->id,
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>$request->password
-        ];
-
-
-        $users = $this->getStudentList();
-        for($i=0; $i<count($users); $i++){
-            if($id == $users[$i]['id']){
-                //array_replace($users[$i],$newUser);
-                $users[$i]['id'] = $newUser['id'];
-                $users[$i]['name'] = $newUser['name'];
-                $users[$i]['email'] = $newUser['email'];
-                $users[$i]['password'] = $newUser['password'];
-
-                //echo $users[$i]['name'];
-                //$users = array_splice($users, $, 2);
-                // unset($users[$i]['id']);
-            }
-        }
-        return view('home.index')->with('users',$users);
-    }
-    //edit
-    function edit($id){
-        $users = $this->getStudentList();
-        for($i=0; $i<count($users); $i++){
-            if($id == $users[$i]['id']){
+        for($i=0; $i<count($data); $i++){
+            if($userid == $data[$i]['userid']){
                 $user = [
-                    'id'=>$users[$i]['id'],
-                    'name'=>$users[$i]['name'],
-                    'email'=>$users[$i]['email'],
-                    'password'=>$users[$i]['password']
+                    'userid'=>$data[$i]['userid'],
+                    'username'=>$data[$i]['username'],
+                    'password'=>$data[$i]['password'],
+                    'type'=>$data[$i]['type'],
+                    'name'=>$data[$i]['name'],
+                    'department'=>$data[$i]['department'],
+                    'cgpa'=>$data[$i]['cgpa']
                 ];
                 return view('home.edit', $user);
-
-                // return view('home.edit')
-                //    ->withId($users[$i]['id'])
-                //    ->withName($users[$i]['name'])
-                //    ->withEmail($users[$i]['email'])
-                //    ->withPassword($users[$i]['password']);
-                
             }
         }
+    }
+    //update 'POST'
+    function update($userid, Request $request){
+        $user = User::find($userid);
+
+        $user->username = $request->username;
+        $user->password = $request->password;
+        $user->type = $request->type;
+        $user->name = $request->name;
+        $user->department = $request->department;
+        $user->cgpa = $request->cgpa;
+        
+        $user->save();
+
+        return redirect('home');
     }
     //delete
     function delete($id){
